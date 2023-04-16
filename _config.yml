@@ -12,9 +12,9 @@ description: "个人博客 学习经验分享"
 #
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: http://rt6sac4xq.hd-bkt.clouddn.com/20220325181458.jpg
+avatar: https://raw.githubusercontent.com/Li-Q-keep/Image/main/img/20220325181458.jpg?token=AOWQZNOMVXWL4K6XKRJLY3TEHNSLK
 # 你的favicon（出现在浏览器tab上）图片URL，建议使用较小(64px × 64px)的图片
-favicon: http://rt6sac4xq.hd-bkt.clouddn.com/img/tele.png?e=1681634535&token=rPrnKJ0ZfCJKQSlGvUTqM75mAUpTEeA_a-QOc9wW:X_qYH7TNIQv5ggZZpRpl2OWS3uo=
+favicon: https://raw.githubusercontent.com/Li-Q-keep/Image/main/img/tele.png?token=AOWQZNK5SLBMTNPSJJWX4ILEHO2KS
 
 # Tabs in header. There are 'Blog', 'About', 'Archive', 'Tags'
 # and URL Link(e.g. 'Theme' tab below) tabs. If you don't need one, just delete
