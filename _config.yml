@@ -65,8 +65,8 @@ disqus: # fromendworld
 gitalk:
   clientID: 933a667f3c0b05f4d4fe
   clientSecret: fceb61cb34a42340ddcf3ad622a1553aad90091f
-  repo: li-q-keep.github.io
-  owner: li-q-keep
+  repo: Li-Q-keep.github.io
+  owner: Li-Q-keep
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 #google_analytics: 
@@ -92,7 +92,7 @@ paginate_path: /page:num/
 version: v1.2.0
 
 # Jekyll 3 now only supports Kramdown for Markdown
-markdown: kramdown
+kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks
   input: GFM
   # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
