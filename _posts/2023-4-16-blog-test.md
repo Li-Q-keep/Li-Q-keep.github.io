@@ -27,8 +27,8 @@ while(True):
 $$
 \begin{align*}
 G_{\mathrm{RC}}(f)= \begin{cases}T, & |f| \leqslant \frac{1-r}{2 T} \\ 
-&\frac{T}{2}\{1+\cos \frac{\pi T}{r}\left(|f|-\frac{1-r}{2 T}\right) \}, & \frac{1-r}{2 T}<|f| \leqslant \frac{1+r}{2 T} \\
-\\ & 0, & |f|>\frac{1+r}{2 T}\end{cases}
+\frac{T}{2}\{1+\cos \frac{\pi T}{r}\left(|f|-\frac{1-r}{2 T}\right) \}, & \frac{1-r}{2 T}<|f| \leqslant \frac{1+r}{2 T} \\
+\\  0, & |f|>\frac{1+r}{2 T}\end{cases}
 \end{align*}
 $$
 
@@ -77,40 +77,9 @@ F[横向流程图]
 ```
 
 
-
-#### flow
-
-```flow
-st=>start: 开始框
-op=>operation: 处理框
-cond=>condition: 判断框(是或否?)
-sub1=>subroutine: 子流程
-io=>inputoutput: 输入输出框
-e=>end: 结束框
-st->op->cond
-cond(yes)->io->e
-cond(no)->sub1(right)->op
-```
-
-#### sequence
-
-```sequence
-Title: 标题：复杂使用
-对象A->对象B: 对象B你好吗?（请求）
-Note right of 对象B: 对象B的描述
-Note left of 对象A: 对象A的描述(提示)
-对象B-->对象A: 我很好(响应)
-对象B->小三: 你好吗
-小三-->>对象A: 对象B找我了
-对象A->对象B: 你真的好吗？
-Note over 小三,对象B: 我们是朋友
-participant C
-Note right of C: 没人陪我玩
-```
-
 ## 图片样例
 
-![img](http://rt6sac4xq.hd-bkt.clouddn.com/20220325181458.jpg)
+![img](https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304162257550.jpg)
 
 ## 文字样例
 
