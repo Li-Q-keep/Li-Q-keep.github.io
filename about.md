@@ -16,4 +16,4 @@ permalink: /about/
 
 博客文章是我原创文章，存档于_posts 文件夹下，版权归我所有，转载请与我联系获得授权许可。
 
-*博客搭建通过[可能是最全面的github pages搭建个人博客教程](https://lemonchann.github.io/blog/create_blog_with_github_pages/)，感谢其分享与开源*
+*博客搭建通过程序员柠檬的[可能是最全面的github pages搭建个人博客教程](https://lemonchann.github.io/blog/create_blog_with_github_pages/)，感谢其分享与开源*
