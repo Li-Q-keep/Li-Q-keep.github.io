@@ -500,6 +500,7 @@ end
 ### 最小单元译码
 
 <img src="https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304170833056.png" style="zoom: 67%;" />
+
 $$
 L R(\hat{\mathbf{u}}_1)=\frac{P(\hat{\mathbf{u}}_1=0)}{P(\hat{\mathbf{u}}_1=1)}=\frac{P(\hat{\mathbf{x}}_1=0) P(\hat{\mathbf{x}}_2=0)+P(\hat{\mathbf{x}}_1=1) P(\hat{\mathbf{x}}_2=1)}{P(\hat{\mathbf{x}}_1=0) P(\hat{\mathbf{x}}_2=1)+P(\hat{\mathbf{x}}_1=1) P(\hat{\mathbf{x}}_2=0)}
 
@@ -509,28 +510,36 @@ L R(\hat{\mathbf{u}}_1)=\frac{P(\hat{\mathbf{u}}_1=0)}{P(\hat{\mathbf{u}}_1=1)}=
 $$
 
 - 如若$\hat u_1=0$，若使$\hat u_2=0$，则必须$\hat x_1=\hat x_2=0$；$\hat u_2=1$则$\hat x_1=\hat x_2=1$
+
   $$
   L R_{\hat{\mathbf{u}}_1=0}(\hat{\mathbf{u}}_2)=\frac{P_{\hat{\mathbf{u}}_1=0}(\hat{\mathbf{u}}_2=0)}{P_{\hat{\mathbf{u}}_1=0}(\hat{\mathbf{u}}_2=1)}=\frac{P(\hat{\mathbf{x}}_1=0) P(\hat{\mathbf{x}}_2=0)}{P(\hat{\mathbf{x}}_1=1) P(\hat{\mathbf{x}}_2=1)}=L R(\hat{\mathbf{x}}_1) L R(\hat{\mathbf{x}}_2)
   $$
+  
   同理，可求得
+  
   $$
   L R_{\hat{\mathbf{u}}_1=1}(\hat{\mathbf{u}}_2)=\frac{P_{\hat{\mathbf{u}}_1=1}(\hat{\mathbf{u}}_2=0)}{P_{\hat{\mathbf{u}}_1=1}(\hat{\mathbf{u}}_2=1)}=\frac{LR(\hat{\mathbf{x}}_2)}{LR(\hat{\mathbf{x}}_1)}
   $$
+  
   即有$LR(\hat{\mathbf{u}}_2)=[LR(\hat{\mathbf{x}}_1)]^{1-2 \hat{\mathbf{u}}_1} LR(\hat{\mathbf{x}}_2)$
 
 - 实际使用中更多使用对数似然比（LLR），则有
+- 
   $$
   LLR(\hat{\mathbf{u}}_1)=\ln \frac{1+e^{L_1+L_2}}{e^{L_1}+e^{L_2}} \approx \operatorname{sign}\left(L_1\right) \operatorname{sign}\left(L_2\right) \min \left\{\left|L_1\right|,\left|L_2\right|\right\}\\
   $$
+  
   其中$L_1,L_2$分别为接收信号的LLR，$sign$表示取符号位，上式常被称为$f$运算。得到$u_1$后即可进行$u_2$的译码，即有
+  
   $$
   LLR(\hat{\mathbf{u}}_2)=(1-2u_1)L_1+L_2
   $$
+  
   上式常被称为$g$运算。得到$LLR(\hat{\mathbf{u}}_1),LLR(\hat{\mathbf{u}}_1)$后即可进行判决，若$LLR\geq 0$判决为0，$LLR<0$判决为1。（同理$LR\geq 1$判决为0，反之判决为1）
 
   ![](https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304170833071.png)
 
-  > 如果使用BPSK调制，$s=1-2x，s\in \left\{ 1,-1\right\}$为发送BPSK信号，$y=s+n$是接收信号，其中$n$是均值为0，方差为$\sigma ^2$的高斯加性白噪声，则接收信号y的$LLR=\ln \frac{\frac{1}{\sigma \sqrt{2 \pi}} e^{-(y-1)^2 /\left(2 \sigma^2\right)}}{\frac{1}{\sigma \sqrt{2 \pi}} e^{-(y+1)^2 /\left(2 \sigma^2\right)}}=\frac{2}{\sigma^2} y$
+  > 如果使用BPSK调制，$s=1-2x，s\in \{ 1,-1\}$为发送BPSK信号，$y=s+n$是接收信号，其中$n$是均值为0，方差为$\sigma ^2$的高斯加性白噪声，则接收信号y的$LLR=\ln \frac{\frac{1}{\sigma \sqrt{2 \pi}} e^{-(y-1)^2 /\left(2 \sigma^2\right)}}{\frac{1}{\sigma \sqrt{2 \pi}} e^{-(y+1)^2 /\left(2 \sigma^2\right)}}=\frac{2}{\sigma^2} y$
 
 ### 串行抵消译码（SC译码）算法
 
@@ -538,7 +547,7 @@ $$
 
 - 这里以一个例子来说明SC译码过程。配置如下（AWGN信道传输，$E_b/N_0=4dB$）：
 
-  码长$N=8$，信息比特数$K=4$，码率$R=K/N=0.5$，信息比特集合$\left\{4,6,7,8\right\}$，冻结比特全部取0,4个信息比特为$(1,1,1,1)$，则$\mathbf{u_1}^8=(00010111)$，$\mathbf{x_1}^8=\mathbf{u_1}^8F^{\otimes 3}=(01101001)$即编码后polar码（具体见极化码编码举例）。$\mathbf{x_1}^8$对应BPSK序列$\mathbf{x_1}^8=(1,-1,-1,1,-1,1,1,-1)$，生成随机噪声序列$\mathbf{n_1}^8=(-1.4,0.5,0.2,-0.8,-0.3,0.2,2.3,1.7)$，接收信号为$\mathbf{y_1}^8=\mathbf{s_1}^8+\mathbf{n_1}^8=(-0.4,-0.5,-0.8,0.2,-1.3,1.2,3.3,0.7)$，接收对数似然比为$\mathbf{L_1}^8=\frac{2}{\sigma^2}\mathbf{y_1}^8=(-2.0,-2.5,-4.0,1.0,-6.5,6.0,16.6,3.5)$。
+  码长$N=8$，信息比特数$K=4$，码率$R=K/N=0.5$，信息比特集合$\{4,6,7,8\}$，冻结比特全部取0,4个信息比特为$(1,1,1,1)$，则$\mathbf{u_1}^8=(00010111)$，$\mathbf{x_1}^8=\mathbf{u_1}^8F^{\otimes 3}=(01101001)$即编码后polar码（具体见极化码编码举例）。$\mathbf{x_1}^8$对应BPSK序列$\mathbf{x_1}^8=(1,-1,-1,1,-1,1,1,-1)$，生成随机噪声序列$\mathbf{n_1}^8=(-1.4,0.5,0.2,-0.8,-0.3,0.2,2.3,1.7)$，接收信号为$\mathbf{y_1}^8=\mathbf{s_1}^8+\mathbf{n_1}^8=(-0.4,-0.5,-0.8,0.2,-1.3,1.2,3.3,0.7)$，接收对数似然比为$\mathbf{L_1}^8=\frac{2}{\sigma^2}\mathbf{y_1}^8=(-2.0,-2.5,-4.0,1.0,-6.5,6.0,16.6,3.5)$。
 
   ![](https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304170833057.png)
 
@@ -613,11 +622,14 @@ $$
 
 - 定义路径度量值（PM）
 
-  路径度量即某个译码结果的后验概率$\operatorname{Pr}\left(\mathbf{u}_1^i \mid \mathbf{y}_1^N\right)$，该值越大说明$u_1^i$的正确概率越大，使用$u_1^i$后续译码$u_{i+1},\dots u_N$，最终译码正确率也就越大。经数学验证可知有如下公式：
+  路径度量即某个译码结果的后验概率$\operatorname{Pr}(\mathbf{u}_1^i | \mathbf{y}_1^N)$
+  ，该值越大说明$u_1^i$的正确概率越大，使用$u_1^i$后续译码$u_{i+1},\dots u_N$，最终译码正确率也就越大。经数学验证可知有如下公式：
+  
   $$
   -\ln \operatorname{Pr}\left(\mathbf{u}_1^i \mid \mathbf{y}_1^N\right)=\sum_{k=1}^i \ln \left(1+\mathrm{e}^{-\left(1-2 u_k\right) L_N^{(k)}}\right)
   $$
-  令$PM=-\ln \operatorname{Pr}\left(\mathbf{u}_1^i \mid \mathbf{y}_1^N\right)$则PM越小，译码正确率越高。
+  
+  令$PM=-\ln \operatorname{Pr}(\mathbf{u}_1^i \mid \mathbf{y}_1^N)$则PM越小，译码正确率越高。
 
   >为何不直接使用LLR相加进行路径度量？
 
@@ -625,26 +637,30 @@ $$
 
   （1）SCL译码器内部并行放置L个SC译码器，记作$SC_1,SC_2,\dots ,SC_N$
 
-  （2）SCL姨妈期获得接收对数似然比序列$(L_1,L_2,\dots,L_N)$，初始化路径度量0，激活1号译码器，未激活译码器为$S_{sleep}=\left\{2,3,\dots,L\right\}$。
+  （2）SCL姨妈期获得接收对数似然比序列$(L_1,L_2,\dots,L_N)$，初始化路径度量0，激活1号译码器，未激活译码器为$S_{sleep}=\{2,3,\dots,L\}$。
 
   （3）激活的1号译码器进行标准SC译码，计算出$L_N^{1}$（1号比特位对数似然比）。判断该位是否为冻结比特位。若为冻结比特直接令$u_1=0$；若为信息比特，判断SCL未激活译码器$S_{sleep}$是否有剩余，若有则从$S_{sleep}$中弹出一个译码器并继承此时1号译码器的全部数据。令原始译码路径（这里为$S_1$）的$u_1=0$，克隆路径的$u_1=1$。分别计算路径度量值，并开始译码下一个比特。
+  
   $$
   \begin{aligned}
   & \operatorname{Pr}\left(\mathbf{u}_{1,1}^i \mid \mathbf{y}_1^N\right)=\sum_{k=1}^{i-1} \ln \left(1+\mathrm{e}^{-\left(1-2 u_{k, 1}\right) L_N^{(k)}}\right)+\ln \left(1+\mathrm{e}^{-L_N^{(i)}}\right) \\
   & \operatorname{Pr}\left(\mathbf{u}_{1, 2}^i \mid \mathbf{y}_1^N\right)=\sum_{k=1}^{i-1} \ln \left(1+\mathrm{e}^{-\left(1-2 u_{k, 2}\right) L_N^{(k)}}\right)+\ln \left(1+\mathrm{e}^{L_N^{(i)}}\right)
   \end{aligned}
   $$
+  
   即**SCL译码器同时保留了$u_i=0,1$两种译码结果**。
 
   （4）激活的不同译码器继续使用各自的数据独立译码，即运行（3）步（把(3)中1号译码器换为当前译码的i号译码器，$u_1$变为$u_i$）
 
   （5）上述过程持续，直至$S_{sleep}=\varnothing$，记此时译码的信息比特为$u_t$，此时所有L个已激活译码器各自有判决$u_t$的$PM_l,LLR:L_{N,l}^t\quad ,1\leq l\leq L$。取$u_t=0,1$两种结果，计算得2L个路径度量，SCL译码器将从下面2L个译码结果中选取L个最小路径度量值的译码结果保留。
+  
   $$
   \mathbf{P M}=\left[\begin{array}{ccccc}
   P M_1+\ln \left(1+\mathrm{e}^{-L_{N, 1}^{(t)}}\right) & \ldots & P M_l+\ln \left(1+\mathrm{e}^{-L_{N, l}^{(t)}}\right) & \ldots & P M_L+\ln \left(1+\mathrm{e}^{-L_{N, L}^{(t)}}\right) \\
   P M_1+\ln \left(1+\mathrm{e}^{L_{N, 1}^{(t)}}\right) & \ldots & P M_l+\ln \left(1+\mathrm{e}^{L_{N, l}^{(t)}}\right) & \ldots & P M_L+\ln \left(1+\mathrm{e}^{L_{N, L}^{(t)}}\right)
   \end{array}\right]
   $$
+  
   PM中第$l$列表示译码器$SC_l$，第一行表示每个译码器对$u_t$译0的结果，第二行表示译1。
 
   对PM中每列共存在3中情况：
