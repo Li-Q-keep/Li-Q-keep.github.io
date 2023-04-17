@@ -22,12 +22,12 @@ author: Li-Q-keep
 
 ### 对称容量与巴氏参数
 
-一个二进制输入离散无记忆信道（B-DMC）可表示为$W:X→Y$，$X$是输入符号集合，$Y$是输出符号集合，转移概率为$W(y|x),x\in X,y\in Y$。
+  一个二进制输入离散无记忆信道（B-DMC）可表示为$W:X→Y$，$X$是输入符号集合，$Y$是输出符号集合，转移概率为$W(y|x),x\in X,y\in Y$
 
-$I(W) \triangleq \sum_{y \in Y} \sum_{x \in X} \frac{1}{2} W(y \mid x) \log \frac{W(y \mid x)}{\frac{1}{2} W(y \mid 0)+\frac{1}{2} W(y \mid 1)}
+$$I(W) \triangleq \sum_{y \in Y} \sum_{x \in X} \frac{1}{2} W(y \mid x) \log \frac{W(y \mid x)}{\frac{1}{2} W(y \mid 0)+\frac{1}{2} W(y \mid 1)}
 \\
 Z(W) \triangleq \sum_{y \in Y} \sqrt{W(y \mid 0) W(y \mid 1)}
-$
+$$
 
 $I(W)$是对信道速率的度量，信道W在等概率输入下时I(W)等于香农容量。
 
@@ -642,9 +642,10 @@ $$
 - 针对以上缺点，SCL算法，即串行抵消列表算法，增加了列表这一元素，即增加每一层路径搜索后允许保留的候选路径数量，每一层扩展后，尽可能多地保留后继路径（每一层保留的路径数不大于L）。完成一层的路径扩展后，选择路径度量值（Path Metrics，PM）最小的L条，保存在一个列表中，等待进行下一层的扩展。
 
 - 定义路径度量值（PM）
-
-  路径度量即某个译码结果的后验概率$\operatorname{Pr}(\mathbf{u}_1^i | \mathbf{y}_1^N)$
-  ，该值越大说明$u_1^i$的正确概率越大，使用$u_1^i$后续译码$u_{i+1},\dots u_N$，最终译码正确率也就越大。经数学验证可知有如下公式：
+  路径度量即某个译码结果的后验概率
+  $\operatorname{Pr}(\mathdf{u}_1^i |\mathbf{y}_1^N)$ 
+  
+  该值越大说明$u_1^i$的正确概率越大，使用$u_1^i$后续译码$u_{i+1},\dots u_N$，最终译码正确率也就越大。经数学验证可知有如下公式：
   
   $$
   -\ln \operatorname{Pr}\left(\mathbf{u}_1^i \mid \mathbf{y}_1^N\right)=\sum_{k=1}^i \ln \left(1+\mathrm{e}^{-\left(1-2 u_k\right) L_N^{(k)}}\right)
