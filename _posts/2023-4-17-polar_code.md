@@ -21,31 +21,35 @@ author: Li-Q-keep
 ### 对称容量与巴氏参数
 
 一个二进制输入离散无记忆信道（B-DMC）可表示为$W:X→Y$，$X$是输入符号集合，$Y$是输出符号集合，转移概率为$W(y|x),x\in X,y\in Y$。
-$$
-I(W) \triangleq \sum_{y \in Y} \sum_{x \in X} \frac{1}{2} W(y \mid x) \log \frac{W(y \mid x)}{\frac{1}{2} W(y \mid 0)+\frac{1}{2} W(y \mid 1)}
+
+$I(W) \triangleq \sum_{y \in Y} \sum_{x \in X} \frac{1}{2} W(y \mid x) \log \frac{W(y \mid x)}{\frac{1}{2} W(y \mid 0)+\frac{1}{2} W(y \mid 1)}
 \\
 Z(W) \triangleq \sum_{y \in Y} \sqrt{W(y \mid 0) W(y \mid 1)}
-$$
+$
 
 $I(W)$是对信道速率的度量，信道W在等概率输入下时I(W)等于香农容量。
 
 > 由信息论，信道容量公式如下，可知输入等概率情况下，$I(W)$有最大值即香农容量。
+> 
 > $$
 > C=\max _{p\left(x_i\right)} I(X ; Y)=\max _{p\left(x_i\right)} \sum_i \sum_j p\left(x_i\right) p\left(y_j \mid x_i\right) \log \frac{p\left(y_j \mid x_i\right)}{\sum_i p\left(x_i\right) p\left(y_j \mid x_i\right)}
 > $$
 
 而Z(W)是信道W一次使用最大似然判决(ML)错误概率上限。$0\leq I(W),Z(W)\leq 1$，I(W)与Z(W)满足这样的关系：且仅当$Z(W)≈0$时，$I(W)≈1$；当且仅当$Z(W)≈1$时，$I(W)≈0$。
 
->由二进制输入离散信道W在ML判决下错误率（寻找单点时间满足y在ML判决下结果非x的概率求和）$P_e^{ML}=\frac{1}{2}\sum_{y\in Y} min\left\{W(y|0),W(y|1)\right\}，P_e^{ML}\in [0,0.5]$，又有关系$min\left\{W(y|0),W(y|1)\right\}\leq \sqrt{W(y|0)W(y|1)}$，因此$P_e^{ML}\leq Z(W),Z(W)\in[0,1]$
+> 由二进制输入离散信道W在ML判决下错误率（寻找单点时间满足y在ML判决下结果非x的概率求和）
+> $P_e^{ML}=\frac{1}{2}\sum_{y\in Y} min\{W(y|0),W(y|1)\}，P_e^{ML}\in [0,0.5]$，又有关系$ min\{W(y|0),W(y|1)\}\leq \sqrt{W(y|0)W(y|1)}$，
+> 因此$P_e^{ML}\leq Z(W),Z(W)\in[0,1]$
 
 ### 常见信道
 
 - DMC（discrete memoryless channel ）离散无记忆信道：某时刻输出仅与当前输入有关
 
   转移概率矩阵
-  $$
-  \bold{Q}=\{q(y_j|x_k)\}_{K*J}
-  $$
+  
+  $\bold{Q}=\{q(y_j|x_k)\}_{K*J}
+  $
+  
   对称DMC：转移概率矩阵的每一行都是第一行的置换，称该矩阵是输入对称的；如果转移概率矩阵的每一列都是第一列的置换，称该矩阵是输出对称的；如果输入、输出都对称，则称该DMC为**对称的DMC信道**。
 
 - BSC：二进制对称信道
@@ -65,14 +69,14 @@ $I(W)$是对信道速率的度量，信道W在等概率输入下时I(W)等于香
 - n=1时，递归合并两个独立的$W_1$得到$W_2:X^2\rightarrow Y^2$
 
   ![](https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304170833072.png)
-
   状态转移概率为：
-  $$
-  W_2\left(y_1, y_2 \mid u_1, u_2\right)=W\left(y_1 \mid u_1 \oplus u_2\right) W\left(y_2 \mid u_2\right)\\
   
-  x_1=u_1\oplus u_2,x_2=u_2\\
+  $ W_2\left(y_1, y_2 \mid u_1, u_2\right)=W\left(y_1 \mid u_1 \oplus u_2\right) W\left(y_2 \mid u_2\right)\\
   
-  {\left[x_1, x_2\right] }=\left[u_1, u_2\right]\left[\begin{array}{ll}
+  x_1=u_1\oplus u_2,x_2=u_2
+  $
+  
+  $$\left[x_1, x_2\right] =\left[u_1, u_2\right]\left[\begin{array}{ll}
   1 & 0 \\
   1 & 1
   \end{array}\right] 
@@ -84,6 +88,7 @@ $I(W)$是对信道速率的度量，信道W在等概率输入下时I(W)等于香
   ![](https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304170833051.png)
 
   ![](https://liq-keep.oss-cn-qingdao.aliyuncs.com/img1/202304170833052.png)
+  
   $$
   \begin{aligned}
   W_4\left(y_1^4 \mid u_1^4\right) & =W_2\left(y_1^2 \mid u_1 \oplus u_2, u_3 \oplus u_4\right) W_2\left(y_3^4 \mid u_2, u_4\right) \\
@@ -93,7 +98,7 @@ $I(W)$是对信道速率的度量，信道W在等概率输入下时I(W)等于香
   $$
 
   $$
-  {\left[x_1, x_2, x_3, x_4\right] } =\left[u_1, u_2, u_3, u_4\right]\left[\begin{array}{cccc}
+  \left[x_1, x_2, x_3, x_4\right] =\left[u_1, u_2, u_3, u_4\right]\left[\begin{array}{cccc}
   1 & 0 & 0 & 0 \\
   1 & 0 & 1 & 0 \\
   1 & 1 & 0 & 0 \\
